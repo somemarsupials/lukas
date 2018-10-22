@@ -1,0 +1,9 @@
+# yarn
+node_modules/
+
+# webpack
+dist/*.js
+dist/*.js.map
+
+# vi
+*.swp
