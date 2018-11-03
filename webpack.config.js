@@ -11,7 +11,7 @@ module.exports = {
   // output
   output: {
     path: path.resolve(__dirname, 'dist/'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
   },
 
   // babel
@@ -28,6 +28,18 @@ module.exports = {
       }
     ]
   },
+
+  optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "initial",
+          },
+        },
+      },
+    },
 
   // development server
   devtool: 'source-map',
