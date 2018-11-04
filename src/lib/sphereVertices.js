@@ -20,6 +20,6 @@ export const jitter = (vector) => {
   return vector;
 };
 
-export const getSphericalPoints = ({ points, radius, jitter }) => {
+export const getSphericalVertices = ({ points, radius, jitter }) => {
   return range(points).map(index => getRandomPoint(radius));
 };

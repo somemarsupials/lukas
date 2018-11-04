@@ -1,1 +1,1 @@
-export * from './spherePoint';
+export * from './sphereVertices';

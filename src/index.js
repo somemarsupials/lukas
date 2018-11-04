@@ -8,19 +8,22 @@ import {
 
 import {
   createObjectGroup,
-  getEventListener
+  getEventListener,
 } from './objects';
+
+import { getSphericalVertices } from './lib';
 
 const initialise = () => {
   const camera = createCamera();
   const scene = createScene();
   const light = createLight();
 
-
-  const objects = createObjectGroup({
+  const vertices = getSphericalVertices({
     points: 15,
-    radius: 5
+    radius: 5,
   });
+
+  const objects = createObjectGroup(vertices);
 
   scene.add(objects);
   scene.add(light);
@@ -28,14 +31,22 @@ const initialise = () => {
   const renderer = createRenderer();
   mount(renderer);
 
-  renderer.domElement.addEventListener('click', getEventListener(camera, scene));
+  renderer.domElement.addEventListener(
+    'mousemove',
+    getEventListener(camera, scene, objects.manager)
+  );
+
+  renderer.domElement.addEventListener(
+    'click',
+    getEventListener(camera, scene, objects.manager)
+  );
 
   const animate = () => {
     requestAnimationFrame(animate);
     renderer.render(scene, camera);
 
-    scene.rotation.x += 0.001
-    scene.rotation.y += 0.001
+    scene.rotation.x += 0.001;
+    scene.rotation.y += 0.001;
   };
 
   animate();

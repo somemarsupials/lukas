@@ -1,7 +1,6 @@
 import { Raycaster, Vector3 } from 'three';
 
-
-export const getEventListener = (camera, scene) => {
+export const getEventListener = (camera, scene, manager) => {
   const raycaster = new Raycaster();
 
   return (event) => {
@@ -14,6 +13,25 @@ export const getEventListener = (camera, scene) => {
 
     raycaster.setFromCamera(ray, camera);
     const intersects = raycaster.intersectObjects(scene.children, true)
-    console.log(intersects)
+      
+    const hasSphere = intersects.reduce((start, intersect) => {
+      return start || manager.hasId(intersect.object.id);
+    }, false);
+
+    console.log(hasSphere)
+
+    intersects.forEach(intersect => {
+      const id = intersect.object.id;
+
+      if (event.type === 'click') {
+        manager.select(id)
+      } else if (hasSphere && manager.hasId(id)) {
+        manager.highlight(id);
+      } else if (!hasSphere) {
+        manager.highlight();
+      };
+
+      manager.paint();
+    });
   };
 };
