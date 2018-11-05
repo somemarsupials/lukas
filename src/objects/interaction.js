@@ -1,6 +1,11 @@
 import { Raycaster, Vector3 } from 'three';
 
-export const getEventListener = (camera, scene, manager) => {
+export const getEventListener = ({
+  camera,
+  scene,
+  manager,
+  callback
+}) => {
   const raycaster = new Raycaster();
 
   return (event) => {
@@ -18,8 +23,6 @@ export const getEventListener = (camera, scene, manager) => {
       return start || manager.hasId(intersect.object.id);
     }, false);
 
-    console.log(hasSphere)
-
     intersects.forEach(intersect => {
       const id = intersect.object.id;
 
@@ -32,6 +35,7 @@ export const getEventListener = (camera, scene, manager) => {
       };
 
       manager.paint();
+      callback && callback(id);
     });
   };
 };

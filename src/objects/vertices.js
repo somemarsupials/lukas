@@ -15,7 +15,7 @@ const createVertexMaterial = () => {
 };
 
 const createVertexGeometry = () => {
-  return new SphereGeometry(SIZES.VERTEX_RADIUS);
+  return new SphereGeometry(SIZES.VERTEX_RADIUS, 10, 10);
 };
 
 const createVertex = (point) => {
@@ -46,7 +46,6 @@ export class VertexManager {
     } else {
       this.highlighted = null;
     };
-    console.log(this.highlighted);
   };
 
   hasId(id) {

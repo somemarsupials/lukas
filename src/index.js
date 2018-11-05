@@ -12,6 +12,7 @@ import {
 } from './objects';
 
 import { getSphericalVertices } from './lib';
+import { SIZES } from './objects';
 
 const initialise = () => {
   const camera = createCamera();
@@ -19,8 +20,8 @@ const initialise = () => {
   const light = createLight();
 
   const vertices = getSphericalVertices({
-    points: 15,
-    radius: 5,
+    points: SIZES.POINTS,
+    radius: SIZES.FRAME_RADIUS,
   });
 
   const objects = createObjectGroup(vertices);
@@ -31,24 +32,29 @@ const initialise = () => {
   const renderer = createRenderer();
   mount(renderer);
 
-  renderer.domElement.addEventListener(
-    'mousemove',
-    getEventListener(camera, scene, objects.manager)
-  );
+  const interaction = getEventListener({
+    camera,
+    scene,
+    manager: objects.manager
+  });
 
-  renderer.domElement.addEventListener(
-    'click',
-    getEventListener(camera, scene, objects.manager)
-  );
+  renderer.domElement.addEventListener('mousemove', interaction);
+  renderer.domElement.addEventListener('click', interaction);
 
   const animate = () => {
     requestAnimationFrame(animate);
+    objects.rotation.x += 0.001;
+    objects.rotation.y += 0.001;
     renderer.render(scene, camera);
-
-    scene.rotation.x += 0.001;
-    scene.rotation.y += 0.001;
   };
 
+  const onWindowResize = () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize( window.innerWidth, window.innerHeight );
+  };
+
+  window.addEventListener('resize', onWindowResize, false);
   animate();
 };
 
