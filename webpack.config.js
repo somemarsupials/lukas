@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
@@ -48,4 +49,10 @@ module.exports = {
     contentBase: 'dist',
     port: 3000,
   },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: `${__dirname}/src/index.html`
+    })
+  ],
 }

@@ -4,6 +4,7 @@ node_modules/
 # webpack
 dist/*.js
 dist/*.js.map
+dist/index.html
 
 # vi
 *.swp
