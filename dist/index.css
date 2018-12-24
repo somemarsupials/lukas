@@ -3,7 +3,7 @@
 html, body {
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: white;
   height: 100%;
   width: 100%;
   font-family: "Inconsolata";
@@ -15,13 +15,21 @@ html, body {
   bottom: 0;
   left: 0;
   right: 0;
-  color: white;
+  color: black;
   margin: 2em;
-  text-transform: uppercase;
   pointer-events: none;
 }
 
 h1 {
   margin: 0;
   padding: 0;
+  line-height: 1.4rem;
+}
+
+p {
+  width: 40%;
+  margin: 0;
+  margin-left: 0.5rem;
+  padding: 0;
+  font-size: 0.8em;
 }

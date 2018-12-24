@@ -1,4 +1,5 @@
 import { WebGLRenderer } from 'three';
+import { BACKGROUND_COLOR } from './constants';
 
 export const createRenderer = () => {
   const renderer = new WebGLRenderer({
@@ -6,6 +7,7 @@ export const createRenderer = () => {
   });
 
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(BACKGROUND_COLOR, 1);
   return renderer;
 };
 
