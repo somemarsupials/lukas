@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+/* @import url('https://fonts.googleapis.com/css?family=Inconsolata'); */
 
 html, body {
   margin: 0;
@@ -6,7 +6,7 @@ html, body {
   background-color: white;
   height: 100%;
   width: 100%;
-  font-family: "Inconsolata";
+  font-family: "Courier New";
 }
 
 #overlay {

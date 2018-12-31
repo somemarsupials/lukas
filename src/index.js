@@ -13,6 +13,7 @@ import {
 
 import { getSphericalVertices } from './lib';
 import { SIZES } from './objects';
+import { TrackballControls } from './three';
 
 const initialise = () => {
   const camera = createCamera();
@@ -25,6 +26,7 @@ const initialise = () => {
   });
 
   const objects = createObjectGroup(vertices);
+  const controls = new TrackballControls(camera);
 
   scene.add(objects);
   scene.add(light);
@@ -43,8 +45,7 @@ const initialise = () => {
 
   const animate = () => {
     requestAnimationFrame(animate);
-    objects.rotation.x += 0.001;
-    objects.rotation.y += 0.001;
+    controls.update();
     renderer.render(scene, camera);
   };
 

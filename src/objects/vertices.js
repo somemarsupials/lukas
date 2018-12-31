@@ -1,14 +1,11 @@
 import {
-  AdditiveBlending,
-  Geometry,
-  Group,
   Mesh,
   MeshLambertMaterial,
   SphereGeometry,
-  Vector3
 } from 'three';
 
 import { COLOURS, SIZES } from './constants';
+import { createLabel } from './label';
 
 const createVertexMaterial = () => {
   return new MeshLambertMaterial({ color: COLOURS.VERTEX });
@@ -20,9 +17,11 @@ const createVertexGeometry = () => {
 
 const createVertex = (point) => {
   const mesh = new Mesh(createVertexGeometry(), createVertexMaterial());
+  const label = createLabel('label', point.toArray());
   mesh.position.set(...point.toArray());
 
-  return mesh;
+
+  return { mesh, label };
 };
 
 export const createVertices = (points) => {
