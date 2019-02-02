@@ -15,7 +15,7 @@ import { getSphericalVertices } from './lib';
 import { SIZES } from './objects';
 import { TrackballControls } from './three';
 
-const initialise = () => {
+const initialise = (projects) => {
   const camera = createCamera();
   const scene = createScene();
   const light = createLight();
@@ -28,8 +28,10 @@ const initialise = () => {
   const objects = createObjectGroup(vertices);
   const controls = new TrackballControls(camera);
 
+
+  camera.add(light);
+  scene.add(camera);
   scene.add(objects);
-  scene.add(light);
 
   const renderer = createRenderer();
   mount(renderer);
@@ -59,4 +61,7 @@ const initialise = () => {
   animate();
 };
 
-initialise();
+fetch('https://pillowtalk-api.herokuapp.com/projects').then((response) => {
+  response.text().then(data => console.log(JSON.parse(data)))
+  initialise();
+})
