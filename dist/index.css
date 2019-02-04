@@ -44,19 +44,20 @@ html, body {
 }
 
 #three-target {
-  width: 80%;
+  width: 70%;
   height: 100%;
 }
 
 #project-information {
   display: none;
+  margin-right: 2em;
   flex: 1;
 }
 
 .project-item {
   margin-bottom: 16px;
   font-size: 1.2em;
-  margin: 2em;
+  max-height: 10rem;
 }
 
 img {
