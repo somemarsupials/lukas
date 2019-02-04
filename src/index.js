@@ -3,7 +3,9 @@ import {
   createLight,
   createRenderer,
   createScene,
-  mount
+  mount,
+  setCameraAspect,
+  setRendererSize,
 } from './framework';
 
 import {
@@ -51,10 +53,9 @@ const initialise = (projects) => {
   };
 
   const onWindowResize = () => {
-    const container = window;
-    camera.aspect = container.innerWidth / container.innerHeight;
+    setCameraAspect(camera);
     camera.updateProjectionMatrix();
-    renderer.setSize(container.innerWidth, container.innerHeight);
+    setRendererSize(renderer);
   };
 
   window.addEventListener('resize', onWindowResize, false);

@@ -1,5 +1,7 @@
 import { Raycaster, Vector3 } from 'three';
 
+import { getContainerAspect } from '../framework';
+
 export const getEventListener = ({
   camera,
   scene,
@@ -11,9 +13,10 @@ export const getEventListener = ({
   return (event) => {
     event.preventDefault();
 
+    const { height, width } = getContainerAspect();
     const ray = {
-      x: (event.clientX / window.innerWidth) * 2 - 1,
-      y: -(event.clientY / window.innerHeight) * 2 + 1,
+      x: (event.clientX / width) * 2 - 1,
+      y: -(event.clientY / height) * 2 + 1,
     };
 
     raycaster.setFromCamera(ray, camera);
