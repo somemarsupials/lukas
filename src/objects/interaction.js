@@ -11,8 +11,6 @@ export const getEventListener = ({
   const raycaster = new Raycaster();
 
   return (event) => {
-    event.preventDefault();
-
     const { height, width } = getContainerAspect();
     const ray = {
       x: (event.clientX / width) * 2 - 1,
@@ -28,9 +26,12 @@ export const getEventListener = ({
 
     intersects.forEach(intersect => {
       const id = intersect.object.id;
+      const object = manager.getId(id);
 
       if (event.type === 'click') {
-        manager.select(id)
+        if (object && object.__project) {
+          manager.select(id)
+        };
       } else if (hasSphere && manager.hasId(id)) {
         manager.highlight(id);
       } else if (!hasSphere) {

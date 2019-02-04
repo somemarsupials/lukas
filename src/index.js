@@ -21,6 +21,7 @@ const initialise = (projects) => {
   const camera = createCamera();
   const scene = createScene();
   const light = createLight();
+  const renderer = createRenderer();
 
   const vertices = getSphericalVertices({
     points: Math.max(projects.length, SIZES.POINTS),
@@ -28,13 +29,10 @@ const initialise = (projects) => {
   });
 
   const objects = createObjectGroup(vertices, projects);
-  const controls = new TrackballControls(camera);
 
   camera.add(light);
   scene.add(camera);
   scene.add(objects);
-
-  const renderer = createRenderer();
   mount(renderer);
 
   const interaction = getEventListener({
@@ -43,6 +41,8 @@ const initialise = (projects) => {
     manager: objects.manager
   });
 
+  console.log(renderer.domElement);
+  const controls = new TrackballControls(camera, renderer.domElement);
   renderer.domElement.addEventListener('mousemove', interaction);
   renderer.domElement.addEventListener('click', interaction);
 
