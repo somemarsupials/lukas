@@ -8,7 +8,9 @@ export const COLOURS = {
 
 export const SIZES = {
   FRAME_RADIUS: 5,
-  POINTS: 10,
+  POINTS: 12,
   VERTEX_RADIUS: 0.08,
-  LABEL: 4,
+  LABEL: 6,
+  LABEL_SCALE: [1.5, 0.4, 0.4],
+  LABEL_OFFSET: 0.3,
 };
