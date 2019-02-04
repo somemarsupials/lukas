@@ -21,13 +21,12 @@ const initialise = (projects) => {
   const light = createLight();
 
   const vertices = getSphericalVertices({
-    points: SIZES.POINTS,
+    points: Math.max(projects.length, SIZES.POINTS),
     radius: SIZES.FRAME_RADIUS,
   });
 
-  const objects = createObjectGroup(vertices);
+  const objects = createObjectGroup(vertices, projects);
   const controls = new TrackballControls(camera);
-
 
   camera.add(light);
   scene.add(camera);
@@ -52,9 +51,10 @@ const initialise = (projects) => {
   };
 
   const onWindowResize = () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const container = window;
+    camera.aspect = container.innerWidth / container.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize(container.innerWidth, container.innerHeight);
   };
 
   window.addEventListener('resize', onWindowResize, false);
@@ -62,6 +62,7 @@ const initialise = (projects) => {
 };
 
 fetch('https://pillowtalk-api.herokuapp.com/projects').then((response) => {
-  response.text().then(data => console.log(JSON.parse(data)))
-  initialise();
+  response.text().then(data => {
+    initialise(JSON.parse(data))
+  })
 })

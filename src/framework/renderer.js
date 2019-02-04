@@ -6,7 +6,8 @@ export const createRenderer = () => {
     antialias: true
   });
 
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  const container = window
+  renderer.setSize(container.innerWidth, container.innerHeight);
   renderer.setClearColor(BACKGROUND_COLOR, 1);
   return renderer;
 };

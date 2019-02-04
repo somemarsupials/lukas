@@ -5,8 +5,9 @@
   "author": "Theo Breuer-Weil <theobreuerweil@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start:dev": "webpack-dev-server --hot",
-    "build": "webpack"
+    "start": "webpack-dev-server --hot",
+    "build": "webpack",
+    "deploy": "yarn build && aws s3 sync dist/ s3://pillow-talk"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
