@@ -1,6 +1,13 @@
 const setItem = (text, id) => {
   const element = document.getElementById(id);
-  if (element) element.innerHTML = text;
+  if (element) {
+    if (element.tagName === "A") {
+      element.href = text;
+    }
+
+    element.innerHTML = text;
+    console.log(element, element.innerHTML);
+  }
 };
 
 const setDLC = (url, id) => {
@@ -22,7 +29,8 @@ export const setProject = (project) => {
 
   const items = [
     [project.title, 'project-title'],
-    [project.description, 'project-description']
+    [project.description, 'project-description'],
+    [project.link, 'project-link'],
   ];
 
   const dlc = [
