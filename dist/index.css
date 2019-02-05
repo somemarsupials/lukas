@@ -44,14 +44,16 @@ html, body {
 }
 
 #three-target {
-  width: 70%;
+  width: 75%;
   height: 100%;
+  z-index: 1
 }
 
 #project-information {
   display: none;
   margin-right: 2em;
   flex: 1;
+  z-index: 1;
 }
 
 .project-item {
@@ -64,4 +66,14 @@ img {
   height: 10rem;
   width: 10rem;
   object-fit: cover;
+}
+
+#background-image {
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  height: 40%;
+  z-index: 0;
+  box-shadow: 2rem 2rem 5rem #cccccc;
 }

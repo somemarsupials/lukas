@@ -24,11 +24,12 @@ export const setRendererSize = (renderer) => {
 
 export const createRenderer = () => {
   const renderer = new WebGLRenderer({
+    alpha: true,
     antialias: true
   });
 
   setRendererSize(renderer);
-  renderer.setClearColor(BACKGROUND_COLOR, 1);
+  renderer.setClearColor(BACKGROUND_COLOR, 0);
   return renderer;
 };
 
